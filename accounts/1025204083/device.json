@@ -1,0 +1,38 @@
+{
+    "product": "KL500",
+    "device": "KL500",
+    "board": "KL500",
+    "brand": "Klipad",
+    "model": "KL500",
+    "wifi_ssid": "TP-LINK_79MAZK",
+    "android_id": "OPM1.171019.018",
+    "boot_id": "ab6f0c5d-be64-aa98-caac-c6ca55aca485",
+    "proc_version": "Linux version 5.17.24-1Qazk6BI (android-build@e64aa98caacc.source.android.com)",
+    "mac_address": "AB:6F:0C:5D:BE:64",
+    "ip_address": [
+        188,
+        99,
+        101,
+        217
+    ],
+    "imei": "883062687325542",
+    "incremental": "4017877731",
+    "protocol": 5,
+    "display": "OPM1.171019.018",
+    "finger_print": "Klipad/KL500/KL500:10/OPM1.171019.018/4017877731:user/release-keys",
+    "baseband": "",
+    "sim": "T-Mobile",
+    "os_type": "android",
+    "bootloader": "U-boot",
+    "wifi_bssid": "AB:6F:0C:5D:BE:64",
+    "apn": "wifi",
+    "version": {
+        "incremental": "4017877731",
+        "release": "10",
+        "codename": "REL",
+        "sdk": 29
+    },
+    "imsi_md5": "213297c2d8a5b420344eb9a858709501",
+    "vendor_name": "Klipad",
+    "vendor_os_name": "android"
+}
