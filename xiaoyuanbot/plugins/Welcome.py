@@ -65,12 +65,8 @@ upload = on_notice()
 
 
 @upload.handle()
-async def _(bot: Bot, event: GroupUploadNoticeEvent):
+async def _(event: GroupUploadNoticeEvent):
     file = event.file
-    url = await bot.call_api(api='get_group_file_url', group_id=event.group_id, file_id=file.id, busid=file.busid)
-    with open(fpath + '\\xiaoyuanbot\\plugins\\Scanner.txt', 'w+') as f:
-        f.write(url['url'])
-        f.close()
     await group_admin.finish(
         '文件上传:\n文件名:' + file.name + '\n大小:' + str(file.size) + '字节\n上传者:' + MessageSegment.at(
             event.user_id))
