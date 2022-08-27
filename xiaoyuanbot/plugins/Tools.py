@@ -118,6 +118,21 @@ async def _():
     await rpic.finish(MessageSegment.image('https://api.ixiaowai.cn/api/api.php'))
 
 
+rr18pic = on_command('r-r18pic')
+
+
+@rr18pic.handle()
+async def _():
+    with open(fpath + '\\xiaoyuanbot\\plugins\\RandomR18Picture.png', 'wb') as f:
+        f.write(get('http://www.acy.moe/api/r18').content)
+        f.close()
+    system(
+        fpath + '\\xiaoyuanbot\\plugins\\_Rickpic.py ' + fpath + '\\xiaoyuanbot\\plugins\\Rick.png ' + fpath + '\\xiaoyuanbot\\plugins\\RandomR18Picture.png ' + fpath + '\\xiaoyuanbot\\plugins\\Picture.png')
+    await rpic.finish(MessageSegment.image(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\Picture.png'))
+    remove(fpath + '\\xiaoyuanbot\\plugins\\RandomR18Picture.png')
+    remove(fpath + '\\xiaoyuanbot\\plugins\\Picture.png')
+
+
 rmcpic = on_command('r-mcpic')
 
 

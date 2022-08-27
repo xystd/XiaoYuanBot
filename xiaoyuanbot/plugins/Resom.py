@@ -35,6 +35,30 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
+                "content": "a-menu -- 显示管理菜单"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "g-menu -- 显示游戏菜单"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "s-menu -- Show Beluga Heck Tools Menu"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
                 "content": "echo -- (NoneBot内置插件,需要@机器人),输出一段文本,用法:echo <文本>"
             }
         },
@@ -92,6 +116,14 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
                 "content": "r-pic -- 随机二刺螈图片"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "r - r18pic -- 随机R18图片,请自行缩小图片到1500x1057或1500x844(临近算法)"
             }
         },
         {
