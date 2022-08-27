@@ -123,7 +123,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "r - r18pic -- 随机R18图片,请自行缩小图片到1500x1057或1500x844(临近算法)"
+                "content": "r-r18pic -- 随机R18图片,请自行缩小图片到1500x1057或1500x844(临近算法)"
             }
         },
         {
