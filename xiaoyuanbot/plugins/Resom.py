@@ -211,6 +211,14 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
+                "content": "playmov -- 播放B站视频,用法:playmov <AV号/BV号>"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
                 "content": "sync -- 设置当前群聊为聊天转发群(需要超级用户权限)"
             }
         },
