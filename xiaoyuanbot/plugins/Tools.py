@@ -266,8 +266,8 @@ async def _(bot: Bot, event: GroupMessageEvent):
             f.close()
             if str(event.message).find('send --Private') == -1 and str(event.message).find('send --Group') == -1:
                 await send.finish('无效参数,需要参数--Private或--Group')
-            if not str(event.message).find('send --Private') == -1:
-                args = str(event.message).replace('send --Private', '').split(",")
+            if not str(event.message).find('send --Private ') == -1:
+                args = str(event.message).replace('send --Private ', '').split(",")
                 if args[0] == 'msg':
                     msg = args[2]
                 if args[0] == 'at':
@@ -278,8 +278,8 @@ async def _(bot: Bot, event: GroupMessageEvent):
                     msg = MessageSegment.xml(args[2])
                 await bot.send_private_msg(user_id=int(args[1]), message=args[2])
                 await send.finish('消息发送成功!')
-            if not str(event.message).find('send --Group') == -1:
-                args = str(event.message).replace('send --Group', '').split(",")
+            if not str(event.message).find('send --Group ') == -1:
+                args = str(event.message).replace('send --Group ', '').split(",")
                 if args[0] == 'msg':
                     msg = args[2]
                 if args[0] == 'at':
