@@ -51,6 +51,15 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
+                "content": "c-menu -- 显示聊天转发群专属菜单"
+            }
+        },
+
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
                 "content": "s-menu -- Show Beluga Heck Tools Menu"
             }
         },
@@ -542,7 +551,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
                     "data": {
                         "name": "XiaoYuanBot",
                         "uin": bot.self_id,
-                        "content": "send -- 发送一条消息,用法:send <--Private\\--Group> <群号>,<消息>"
+                        "content": "send -- 发送一条消息,用法:send <--Private\\--Group> <消息类型(可填msg,at,tts,xml)>,<群号>,<消息>"
                     }
                 }
             ]
