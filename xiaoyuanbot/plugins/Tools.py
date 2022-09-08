@@ -273,7 +273,8 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 if args[0] == 'at':
                     msg = MessageSegment.at(int(args[2]))
                 if args[0] == 'tts':
-                    msg = MessageSegment.record('http://fanyi.baidu.com/gettts?lan=zh&text=' + args[2] + '&spd=5&source=SpeakAudio.mp3')
+                    msg = MessageSegment.record(
+                        'http://fanyi.baidu.com/gettts?lan=zh&text=' + args[2] + '&spd=5&source=SpeakAudio.mp3')
                 if args[0] == 'xml':
                     msg = MessageSegment.xml(args[2])
                 await bot.send_private_msg(user_id=int(args[1]), message=args[2])
@@ -285,8 +286,25 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 if args[0] == 'at':
                     msg = MessageSegment.at(int(args[2]))
                 if args[0] == 'tts':
-                    msg = MessageSegment.record('http://fanyi.baidu.com/gettts?lan=zh&text=' + args[2] + '&spd=5&source=SpeakAudio.mp3')
+                    msg = MessageSegment.record(
+                        'http://fanyi.baidu.com/gettts?lan=zh&text=' + args[2] + '&spd=5&source=SpeakAudio.mp3')
                 if args[0] == 'xml':
                     msg = MessageSegment.xml(args[2])
                 await bot.send_group_msg(group_id=int(args[1]), message=msg)
                 await send.finish('消息发送成功!')
+
+
+mc = on_command('mc')
+
+
+@mc.handle()
+async def _(event: GroupMessageEvent):
+    address = str(event.message).replace('mc ', '')
+    addr = address.split(':')
+    req = get('https://api.wer.plus/api/mcse?host=' + addr[1] + '&port=' + addr[2])
+    if req.json().get("code") == 200:
+        await mc.finish('服务器' + address + '当前的状态:在线\n版本号:' + req.json().get(
+            "ver_name") + '\n服务器名称:' + req.json().get("serv_name") + '\n在线人数:' + req.json().get(
+            "onl_l") + '\n最多在线人数:' + req.json().get("max_l") + '\n延迟:' + req.json().get("serv_ping"))
+    else:
+        await mc.finish('服务器' + address + '当前的状态:离线')
