@@ -94,4 +94,7 @@ ban = on_notice()
 
 @ban.handle()
 async def _(event: GroupBanNoticeEvent):
-    await group_admin.finish(MessageSegment.at(event.user_id) + '被管理员禁言' + str(event.time) + '秒!')
+    if event.sub_type == 'ban':
+        await group_admin.finish(MessageSegment.at(event.user_id) + '被管理员禁言' + str(event.time) + '秒!')
+    else:
+        await group_admin.finish(MessageSegment.at(event.user_id) + '被管理员解除禁言')

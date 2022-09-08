@@ -15,7 +15,7 @@ sync_group = open(fpath + '\\xiaoyuanbot\\plugins\\Syncgroup.txt', 'r').read()
 
 
 def runapp():
-    app.run(port=8085, host='0.0.0.0')
+    app.run(port=8088, host='0.0.0.0')
 
 
 thr = Thread(target=runapp)
