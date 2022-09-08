@@ -305,9 +305,11 @@ async def _(event: GroupMessageEvent):
         req = get('https://api.wer.plus/api/mcse?host=' + addr[0] + '&port=' + addr[1])
     else:
         req = get('https://api.wer.plus/api/mcse?host=' + address)
-    if req.json().get("code") == 200:
-        await mc.finish('服务器' + address + '当前的状态:在线\n版本号:' + req.json().get(
-            "ver_name") + '\n服务器名称:' + req.json().get("serv_name") + '\n在线人数:' + req.json().get(
-            "onl_l") + '\n最多在线人数:' + req.json().get("max_l") + '\n延迟:' + req.json().get("serv_ping"))
+    if req.json().get("msg") == 'success':
+        await mc.finish('服务器' + address + '当前的状态:在线\n版本号:' + req.json().get("data").get(
+            "ver_name") + '\n服务器名称:' + req.json().get("data").get("serv_name") + '\n在线人数:' + req.json().get(
+            "data").get(
+            "onl_l") + '\n最多在线人数:' + req.json().get("data").get("max_l") + '\n延迟:' + req.json().get("data").get(
+            "serv_ping"))
     else:
         await mc.finish('服务器' + address + '当前的状态:离线')
