@@ -300,8 +300,11 @@ mc = on_command('mc')
 @mc.handle()
 async def _(event: GroupMessageEvent):
     address = str(event.message).replace('mc ', '')
-    addr = address.split(':')
-    req = get('https://api.wer.plus/api/mcse?host=' + addr[1] + '&port=' + addr[2])
+    if not address.find(':') == -1:
+        addr = address.split(':')
+        req = get('https://api.wer.plus/api/mcse?host=' + addr[0] + '&port=' + addr[0])
+    else:
+        req = get('https://api.wer.plus/api/mcse?host=' + address)
     if req.json().get("code") == 200:
         await mc.finish('服务器' + address + '当前的状态:在线\n版本号:' + req.json().get(
             "ver_name") + '\n服务器名称:' + req.json().get("serv_name") + '\n在线人数:' + req.json().get(
