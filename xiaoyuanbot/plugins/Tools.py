@@ -302,7 +302,7 @@ async def _(event: GroupMessageEvent):
     address = str(event.message).replace('mc ', '')
     if not address.find(':') == -1:
         addr = address.split(':')
-        req = get('https://api.wer.plus/api/mcse?host=' + addr[0] + '&port=' + addr[0])
+        req = get('https://api.wer.plus/api/mcse?host=' + addr[0] + '&port=' + addr[1])
     else:
         req = get('https://api.wer.plus/api/mcse?host=' + address)
     if req.json().get("code") == 200:
