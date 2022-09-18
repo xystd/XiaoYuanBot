@@ -148,6 +148,14 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
+                "content": "r-errpic -- 随机B站404漫画"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
                 "content": "speak -- 以发送语音的形式说一句话,用法:speak <文本>"
             }
         },
@@ -229,6 +237,14 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
                 "content": "sync -- 设置当前群聊为聊天转发群(需要超级用户权限)"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "mc -- 获得一个MC服务器的运行状态,用法:mc <服务器地址>"
             }
         },
         {

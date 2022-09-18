@@ -141,6 +141,14 @@ async def _():
     await rmcpic.finish(MessageSegment.image('https://api.ixiaowai.cn/mcapi/mcapi.php'))
 
 
+rerrpic = on_command('r-errpic')
+
+
+@rerrpic.handle()
+async def _():
+    await rerrpic.finish(MessageSegment.image('https://www.acy.moe/api/404'))
+
+
 speak = on_command('speak')
 
 
