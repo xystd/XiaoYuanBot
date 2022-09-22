@@ -84,14 +84,6 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "fmusic -- 查找音乐,用法:fmusic <音乐名>"
-            }
-        },
-        {
-            "type": "node",
-            "data": {
-                "name": "XiaoYuanBot",
-                "uin": bot.self_id,
                 "content": "fakemsg -- 制造假消息,用法:fakemsg <QQ号>,<昵称>,<消息>"
             }
         },

@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from json import load, dump, dumps, loads
+from json import dump, dumps, loads
 from os import path, mkdir
 from random import seed, choice, randint
 from sys import argv
 
 from nonebot import on_command
-from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot
+from nonebot.adapters.onebot.v11 import GroupMessageEvent
 from nonebot.permission import *
 
 seed()
@@ -37,14 +37,14 @@ async def _(event: GroupMessageEvent):
     if not path.isfile(fpath + '\\xiaoyuanbot\\plugins\\Game\\' + user_id + '.json'):
         with open(fpath + '\\xiaoyuanbot\\plugins\\Game\\' + user_id + '.json', 'w+') as f:
             data = {
-                    "Coal": 0,
-                    "Iron": 0,
-                    "Gold": 0,
-                    "Diamond": 0,
-                    "Oak": 0,
-                    "Acacia": 0,
-                    "Jungle": 0,
-                    "Dark_Oak": 0
+                "Coal": 0,
+                "Iron": 0,
+                "Gold": 0,
+                "Diamond": 0,
+                "Oak": 0,
+                "Acacia": 0,
+                "Jungle": 0,
+                "Dark_Oak": 0
             }
             f.write(dumps(data))
             f.close()
@@ -118,6 +118,7 @@ async def _(event: GroupMessageEvent):
     else:
         await cut.finish('你砍了个寂寞')
 
+
 back = on_command('back')
 
 
@@ -146,7 +147,8 @@ async def _(event: GroupMessageEvent):
             if not js["Dark_Oak"] == 0:
                 item = item + " " + str(js["Dark_Oak"]) + "个深色橡木"
             await back.finish('你有' + item)
-            if js["Coal"] == 0 and js["Iron"] == 0 and not js["Gold"] == 0 and js["Diamond"] == 0 and js["Oak"] == 0 and js["Acacia"] == 0 and js["Jungle"] == 0 and js["Dark_Oak"] == 0:
+            if js["Coal"] == 0 and js["Iron"] == 0 and not js["Gold"] == 0 and js["Diamond"] == 0 and js["Oak"] == 0 and \
+                    js["Acacia"] == 0 and js["Jungle"] == 0 and js["Dark_Oak"] == 0:
                 await back.finish('你没有任何物品')
     else:
         await back.finish('你没有注册,请输入\"g-reg\"来注册')
@@ -195,6 +197,7 @@ async def _(event: GroupMessageEvent):
             await sign.finish('签到成功,你获得了' + str(diamond) + '个钻石')
     else:
         await sign.finish('你没有注册,请输入\"g-reg\"来注册')
+
 
 pvp = on_command('pvp')
 
@@ -333,6 +336,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             await pvp.finish('你的钻石数不足以进行游戏!')
     else:
         await pvp.finish('你没有注册,请输入\"g-reg\"来注册')
+
 
 edit = on_command('edit', permission=SUPERUSER)
 

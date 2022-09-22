@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import nonebot
-from nonebot.adapters.onebot.v11 import Adapter as ONEBOT_V11Adapter
 from os import path
 from sys import argv
+
+import nonebot
+from nonebot.adapters.onebot.v11 import Adapter as ONEBOT_V11Adapter
+
 fpath = path.split(path.realpath(argv[0]))[0]
 
 # Custom your logger

@@ -8,6 +8,7 @@ from bilibili_api import video, Credential
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import GroupMessageEvent, MessageSegment
 from nonebot.permission import *
+from pyttsx3 import init
 from qrcode import make
 from requests import get
 
@@ -22,20 +23,6 @@ async def _():
     await covid.finish(
         "----国内疫情统计----\n今日确诊:" + covidgetter()[0] + "\n今日治愈:" + covidgetter()[1] + "\n今日死亡:" +
         covidgetter()[2])
-
-
-fmusic = on_command('fmusic')
-
-
-@fmusic.handle()
-async def _(event: GroupMessageEvent):
-    name = str(event.message).replace('fmusic ', '')
-    await fmusic.finish('----音乐查询结果----\n歌曲:' + musicgetter(name)[0] +
-                        '\n艺人:' + musicgetter(name)[1] +
-                        '\n网易云ID:' + musicgetter(name)[2] +
-                        '\n网址:https://music.163.com/song?id=' + musicgetter(name)[2] +
-                        '\n下载地址:http://music.163.com/song/media/outer/url?id=' + musicgetter(name)[2] +
-                        '(歌曲可能因版权原因下载失败)')
 
 
 fakemsg = on_command('fakemsg')
@@ -88,10 +75,12 @@ play = on_command('play')
 @play.handle()
 async def _(event: GroupMessageEvent):
     name = str(event.message).replace('play ', '')
-    file = get(f'http://music.163.com/song/media/outer/url?id=' + musicgetter(name)[2])
+    music = musicgetter(name)
+    file = get(f'http://music.163.com/song/media/outer/url?id=' + music[2])
     with open(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3', 'wb') as f:
         f.write(file.content)
         f.close()
+    await play.send('正在播放:' + music[1] + ' - ' + music[0] + '\nhttps://music.163.com/song?id=' + music[2])
     await play.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3'))
     remove(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3')
 
@@ -155,8 +144,10 @@ speak = on_command('speak')
 @speak.handle()
 async def _(event: GroupMessageEvent):
     text = str(event.message).replace('speak ', '')
-    await speak.finish(
-        MessageSegment.record('http://fanyi.baidu.com/gettts?lan=zh&text=' + text + '&spd=5&source=SpeakAudio.mp3'))
+    engine = init()
+    engine.save_to_file(text, filename=fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
+    await speak.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav'))
+    remove(fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
 
 
 timenow = on_command('timenow')
@@ -197,10 +188,15 @@ async def _(event: GroupMessageEvent):
     a = args[0]
     b = args[1]
     c = args[2]
-    await yxh.finish(
-        a + b + '是怎么回事呢?' + a + '相信大家都很熟悉,但是' + a + b + '是怎么回事呢,下面就让小编带大家一起了解吧。\n' + a + b +
-        ',其实就是' + c + ',大家可能会很惊讶' + a + '怎么会' + b + '呢?但事实就是这样,小编也感到非常惊讶。\n' + '这就是关于' + a + b +
-        '的事情了,大家有什么想法呢,欢迎在评论区告诉小编一起讨论哦!')
+    engine = init()
+    engine.save_to_file(
+        a + b + '是怎么回事呢?' + a + '相信大家都很熟悉,但是' + a + b + '是怎么回事呢,下面就让小编带大家一起了解吧。\n' + a + b + ',其实就是' + c + ',大家可能会很惊讶' + a + '怎么会' + b + '呢?但事实就是这样,小编也感到非常惊讶。\n' + '这就是关于' + a + b + '的事情了,大家有什么想法呢,欢迎在评论区告诉小编一起讨论哦!',
+        filename=fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav')
+    system(
+        fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhMusic.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 -f mp3 ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3')
+    await yxh.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3'))
+    remove(fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav')
+    remove(fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3')
 
 
 mkgrass = on_command('mkgrass')
@@ -281,8 +277,9 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 if args[0] == 'at':
                     msg = MessageSegment.at(int(args[2]))
                 if args[0] == 'tts':
-                    msg = MessageSegment.record(
-                        'http://fanyi.baidu.com/gettts?lan=zh&text=' + args[2] + '&spd=5&source=SpeakAudio.mp3')
+                    engine = init()
+                    engine.save_to_file(args[2], filename=fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav')
+                    msg = MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
                 if args[0] == 'xml':
                     msg = MessageSegment.xml(args[2])
                 await bot.send_private_msg(user_id=int(args[1]), message=args[2])
@@ -294,11 +291,13 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 if args[0] == 'at':
                     msg = MessageSegment.at(int(args[2]))
                 if args[0] == 'tts':
-                    msg = MessageSegment.record(
-                        'http://fanyi.baidu.com/gettts?lan=zh&text=' + args[2] + '&spd=5&source=SpeakAudio.mp3')
+                    engine = init()
+                    engine.save_to_file(args[2], filename=fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav')
+                    msg = MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
                 if args[0] == 'xml':
                     msg = MessageSegment.xml(args[2])
                 await bot.send_group_msg(group_id=int(args[1]), message=msg)
+                remove(fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
                 await send.finish('消息发送成功!')
 
 
