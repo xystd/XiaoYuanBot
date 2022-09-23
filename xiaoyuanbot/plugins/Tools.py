@@ -146,6 +146,7 @@ async def _(event: GroupMessageEvent):
     text = str(event.message).replace('speak ', '')
     engine = init()
     engine.save_to_file(text, filename=fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
+    engine.runAndWait()
     await speak.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav'))
     remove(fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
 
@@ -188,10 +189,8 @@ async def _(event: GroupMessageEvent):
     a = args[0]
     b = args[1]
     c = args[2]
-    engine = init()
-    engine.save_to_file(
-        a + b + '是怎么回事呢?' + a + '相信大家都很熟悉,但是' + a + b + '是怎么回事呢,下面就让小编带大家一起了解吧。\n' + a + b + ',其实就是' + c + ',大家可能会很惊讶' + a + '怎么会' + b + '呢?但事实就是这样,小编也感到非常惊讶。\n' + '这就是关于' + a + b + '的事情了,大家有什么想法呢,欢迎在评论区告诉小编一起讨论哦!',
-        filename=fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav')
+    system(
+        fpath + '\\xiaoyuanbot\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav  -t \"' + a + b + '是怎么回事呢?' + a + '相信大家都很熟悉,但是' + a + b + '是怎么回事呢,下面就让小编带大家一起了解吧。\n' + a + b + ',其实就是' + c + ',大家可能会很惊讶' + a + '怎么会' + b + '呢?但事实就是这样,小编也感到非常惊讶。\n' + '这就是关于' + a + b + '的事情了,大家有什么想法呢,欢迎在评论区告诉小编一起讨论哦!\"')
     system(
         fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhMusic.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 -f mp3 ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3')
     await yxh.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3'))
@@ -277,9 +276,9 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 if args[0] == 'at':
                     msg = MessageSegment.at(int(args[2]))
                 if args[0] == 'tts':
-                    engine = init()
-                    engine.save_to_file(args[2], filename=fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav')
-                    msg = MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
+                    system(
+                        fpath + '\\xiaoyuanbot\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav  -t \"' +
+                        args[2] + '\"')
                 if args[0] == 'xml':
                     msg = MessageSegment.xml(args[2])
                 await bot.send_private_msg(user_id=int(args[1]), message=args[2])
@@ -291,9 +290,9 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 if args[0] == 'at':
                     msg = MessageSegment.at(int(args[2]))
                 if args[0] == 'tts':
-                    engine = init()
-                    engine.save_to_file(args[2], filename=fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav')
-                    msg = MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
+                    system(
+                        fpath + '\\xiaoyuanbot\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav  -t \"' +
+                        args[2] + '\"')
                 if args[0] == 'xml':
                     msg = MessageSegment.xml(args[2])
                 await bot.send_group_msg(group_id=int(args[1]), message=msg)
