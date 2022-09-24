@@ -144,7 +144,7 @@ speak = on_command('speak')
 async def _(event: GroupMessageEvent):
     text = str(event.message).replace('speak ', '')
     system(
-        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav -t \"' + text + '\"')
+        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav -t \"' + text + '\"')
     await speak.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav'))
     remove(fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
 
@@ -275,7 +275,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
                     msg = MessageSegment.at(int(args[2]))
                 if args[0] == 'tts':
                     system(
-                        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav  -t \"' +
+                        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav -t \"' +
                         args[2] + '\"')
                 if args[0] == 'xml':
                     msg = MessageSegment.xml(args[2])
@@ -289,7 +289,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
                     msg = MessageSegment.at(int(args[2]))
                 if args[0] == 'tts':
                     system(
-                        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav  -t \"' +
+                        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav -t \"' +
                         args[2] + '\"')
                 if args[0] == 'xml':
                     msg = MessageSegment.xml(args[2])
