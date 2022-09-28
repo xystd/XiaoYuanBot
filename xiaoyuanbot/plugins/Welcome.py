@@ -14,10 +14,11 @@ group_increase = on_notice()
 
 @group_increase.handle()
 async def _(event: GroupIncreaseNoticeEvent):
-    await group_increase.finish(choice(
+    await group_increase.send(choice(
         ['很高兴遇见你,' + MessageSegment.at(event.user_id) + ',我们希望您给我们带份披萨',
          '你做到了!' + MessageSegment.at(event.user_id), '一只野生的' + MessageSegment.at(event.user_id) + '出现了',
          MessageSegment.at(event.user_id) + '跳进了群组']))
+    await group_increase.finish('如要触发Bot菜单,请使用命令\"menu\"')
 
 
 group_decrease = on_notice()
