@@ -190,7 +190,7 @@ async def _(event: GroupMessageEvent):
     system(
         fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav -t \"' + a + b + '是怎么回事呢？' + a + '相信大家都很熟悉，但是' + a + b + '是怎么回事呢，下面就让小编带大家一起了解吧。' + a + b + '，其实就是' + c + '，大家可能会很惊讶' + a + '怎么会' + b + '呢？但事实就是这样，小编也感到非常惊讶。这就是关于' + a + b + '的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！\"')
     system(
-        fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhMusic.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 -f mp3 ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3')
+        fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhMusic.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 -y -f mp3 ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3')
     await yxh.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3'))
     remove(fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav')
     remove(fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3')

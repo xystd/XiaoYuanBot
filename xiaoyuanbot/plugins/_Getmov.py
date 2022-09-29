@@ -41,7 +41,7 @@ async def getmov(vid: str):
                     print(f'下载音频流 {process} / {length}')
                     f.write(chunk)
     system(argv[3] + ' -i ' + argv[2] + '\\video_temp.m4s -i ' + argv[
-        2] + '\\audio_temp.m4s \"' + argv[2] + '\\' + info['title'] + '.mp4\"')
+        2] + '\\audio_temp.m4s -y \"' + argv[2] + '\\' + info['title'] + '.mp4\"')
     remove(argv[2] + '\\video_temp.m4s')
     remove(argv[2] + '\\audio_temp.m4s')
 
