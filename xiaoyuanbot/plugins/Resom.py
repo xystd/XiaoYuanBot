@@ -188,6 +188,14 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
+                "content": "film -- 用电影解说的语气创建一段文本,用法:film <男主>,<女主>,<配角>,<事件>"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
                 "content": "nice -- 发送随机Nice爷爷表情包"
             }
         },

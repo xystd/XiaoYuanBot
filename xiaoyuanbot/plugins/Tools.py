@@ -196,6 +196,25 @@ async def _(event: GroupMessageEvent):
     remove(fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3')
 
 
+film = on_command('film')
+
+
+@film.handle()
+async def _(event: GroupMessageEvent):
+    args = str(event.message).replace('film ', '').split(",")
+    a = args[0]
+    b = args[1]
+    c = args[2]
+    d = args[3]
+    system(
+        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.wav -t \"' + '注意看，你眼前这个男人名叫' + a + '，他正在' + d + '，不料却被' + b + '发现，别眨眼，' + a + '赶紧去找，' + c + '，却发现' + c + '也被' + b + '发现，' + a + '不知道跑了多远，终于跑出了这里。其实我们都是电影里的每个人，遇到困难也不要退缩，勇敢超越自我，才能迎来人生的春天。这里是' + a + '说电影，关注我获得更多电影解说。\"')
+    system(
+        fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe -i ' + fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.wav -i ' + fpath + '\\xiaoyuanbot\\plugins\\FilmMusic.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 -y -f mp3 ' + fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.mp3')
+    await film.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.mp3'))
+    remove(fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.wav')
+    remove(fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.mp3')
+
+
 mkgrass = on_command('mkgrass')
 
 
