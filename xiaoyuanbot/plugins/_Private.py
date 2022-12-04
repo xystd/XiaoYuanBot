@@ -3,7 +3,7 @@ from json import loads
 from os import popen
 from urllib import parse
 
-from requests import get
+from requests import get, post
 
 
 def translate(target):
@@ -99,9 +99,15 @@ def command_executor(command_t: str) -> str:
 
 def makeGrass(text: str) -> str:
     ret = ''
-    if not text.replace(' ', '').replace(',', '').replace('?', '').replace('!', '').replace('.,', '').replace('(', '').replace(')', '').encode('utf-8').isalpha():
+    if not text.replace(' ', '').replace(',', '').replace('?', '').replace('!', '').replace('.,', '').replace('(',
+                                                                                                              '').replace(
+            ')', '').encode('utf-8').isalpha():
         text = translate(text)
     text_t = text.split(' ')
     for txt in text_t:
         ret = ret + translate(txt)
     return ret
+
+
+def text2speach(text: str):
+    post('http://www.mysqlschool.cn/SpeekText/index.php?type=2&text=' + text + '&voice_name=zh-CN-XiaoxiaoNeural')

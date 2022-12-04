@@ -187,12 +187,21 @@ async def _(event: GroupMessageEvent):
     a = args[0]
     b = args[1]
     c = args[2]
+    with open(fpath + '\\xiaoyuanbot\\plugins\\SSML_Xiaoxiao.xml', 'r', encoding='UTF-8') as f:
+        text = f.read()
+        text = text.replace('XXX',
+                            a + b + '是怎么回事呢？' + a + '相信大家都很熟悉，但是' + a + b + '是怎么回事呢，下面就让小编带大家一起了解吧。' + a + b + '，其实就是' + c + '，大家可能会很惊讶' + a + '怎么会' + b + '呢？但事实就是这样，小编也感到非常惊讶。这就是关于' + a + b + '的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！')
+        file = open(fpath + '\\xiaoyuanbot\\plugins\\SSML.xml', 'w', encoding='UTF-8')
+        file.write(text)
+        f.close()
+        file.close()
     system(
-        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav -t \"' + a + b + '是怎么回事呢？' + a + '相信大家都很熟悉，但是' + a + b + '是怎么回事呢，下面就让小编带大家一起了解吧。' + a + b + '，其实就是' + c + '，大家可能会很惊讶' + a + '怎么会' + b + '呢？但事实就是这样，小编也感到非常惊讶。这就是关于' + a + b + '的事情了，大家有什么想法呢，欢迎在评论区告诉小编一起讨论哦！\"')
+        fpath + '\\xiaoyuanbot\\plugins\\_Gettts.py --input ' + fpath + '\\xiaoyuanbot\\plugins\\SSML.xml --output ' + fpath + '\\xiaoyuanbot\\plugins\\YxhVoice')
     system(
-        fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhMusic.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 -y -f mp3 ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3')
+        fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhVoice.mp3 -i ' + fpath + '\\xiaoyuanbot\\plugins\\YxhMusic.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 -y -f mp3 ' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3')
     await yxh.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3'))
-    remove(fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.wav')
+    remove(fpath + '\\xiaoyuanbot\\plugins\\SSML.xml')
+    remove(fpath + '\\xiaoyuanbot\\plugins\\YxhVoice.mp3')
     remove(fpath + '\\xiaoyuanbot\\plugins\\YxhAudio.mp3')
 
 
@@ -206,12 +215,21 @@ async def _(event: GroupMessageEvent):
     b = args[1]
     c = args[2]
     d = args[3]
+    with open(fpath + '\\xiaoyuanbot\\plugins\\SSML_Yunxi.xml', 'r', encoding='UTF-8') as f:
+        text = f.read()
+        text = text.replace('XXX',
+                            '注意看，你眼前这个男人名叫' + a + '，他正在' + d + '，不料却被' + b + '发现，别眨眼，' + a + '赶紧去找，' + c + '，却发现' + c + '也被' + b + '发现，' + a + '不知道跑了多远，终于跑出了这里。其实我们都是电影里的每个人，遇到困难也不要退缩，勇敢超越自我，才能迎来人生的春天。这里是' + a + '说电影，关注我获得更多电影解说。')
+        file = open(fpath + '\\xiaoyuanbot\\plugins\\SSML.xml', 'w', encoding='UTF-8')
+        file.write(text)
+        f.close()
+        file.close()
     system(
-        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.wav -t \"' + '注意看，你眼前这个男人名叫' + a + '，他正在' + d + '，不料却被' + b + '发现，别眨眼，' + a + '赶紧去找，' + c + '，却发现' + c + '也被' + b + '发现，' + a + '不知道跑了多远，终于跑出了这里。其实我们都是电影里的每个人，遇到困难也不要退缩，勇敢超越自我，才能迎来人生的春天。这里是' + a + '说电影，关注我获得更多电影解说。\"')
+        fpath + '\\xiaoyuanbot\\plugins\\_Gettts.py --input ' + fpath + '\\xiaoyuanbot\\plugins\\SSML.xml --output ' + fpath + '\\xiaoyuanbot\\plugins\\FilmVoice')
     system(
-        fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe -i ' + fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.wav -i ' + fpath + '\\xiaoyuanbot\\plugins\\FilmMusic.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 -y -f mp3 ' + fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.mp3')
+        fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe -i ' + fpath + '\\xiaoyuanbot\\plugins\\FilmVoice.mp3 -i ' + fpath + '\\xiaoyuanbot\\plugins\\FilmMusic.mp3 -filter_complex amix=inputs=2:duration=first:dropout_transition=2 -y -f mp3 ' + fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.mp3')
     await film.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.mp3'))
-    remove(fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.wav')
+    remove(fpath + '\\xiaoyuanbot\\plugins\\SSML.xml')
+    remove(fpath + '\\xiaoyuanbot\\plugins\\FilmVoice.mp3')
     remove(fpath + '\\xiaoyuanbot\\plugins\\FilmAudio.mp3')
 
 
