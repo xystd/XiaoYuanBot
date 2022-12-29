@@ -25,9 +25,7 @@ app = nonebot.get_asgi()
 driver = nonebot.get_driver()
 driver.register_adapter(ONEBOT_V11Adapter)
 
-nonebot.load_builtin_plugin("echo")
 nonebot.load_plugin("nonebot_plugin_gocqhttp")
-nonebot.load_plugin("nonebot_plugin_petpet")
 nonebot.load_plugins(fpath + "\\xiaoyuanbot\\plugins")
 
 # Please DO NOT modify this file unless you know what you are doing!

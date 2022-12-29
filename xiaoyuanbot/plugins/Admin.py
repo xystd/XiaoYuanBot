@@ -7,8 +7,8 @@ from nonebot import on_command
 from nonebot.adapters.onebot.v11 import Bot, GroupMessageEvent, MessageSegment
 from nonebot.adapters.onebot.v11.permission import *
 
-kick = on_command('kick', permission=GROUP_ADMIN | GROUP_OWNER)
 fpath = path.split(path.realpath(argv[0]))[0]
+kick = on_command('kick', permission=GROUP_ADMIN | GROUP_OWNER)
 
 
 @kick.handle()

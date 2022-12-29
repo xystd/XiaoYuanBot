@@ -68,14 +68,6 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "echo -- (NoneBot内置插件,需要@机器人),输出一段文本,用法:echo <文本>"
-            }
-        },
-        {
-            "type": "node",
-            "data": {
-                "name": "XiaoYuanBot",
-                "uin": bot.self_id,
                 "content": "covid -- 每日疫情信息"
             }
         },
@@ -245,6 +237,14 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
                 "content": "mc -- 获得一个MC服务器的运行状态,用法:mc <服务器地址>"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "live-play -- XiaoYuan Studio的直播点歌,用法:live-play <音乐名>"
             }
         },
         {
