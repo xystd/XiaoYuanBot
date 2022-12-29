@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from json import loads
-from os import popen, system, startfile, path
+from os import popen, system, path
 from sys import argv
 from urllib import parse
 
@@ -118,4 +118,4 @@ def text2speach(text: str):
 
 def playmusic(file: str):
     system('taskkill /f /im ffplay.exe')
-    startfile(fpath + '\\xiaoyuanbot\\plugins\\ffplay.exe ' + file)
+    system('start ' + fpath + '\\xiaoyuanbot\\plugins\\ffplay.exe ' + file)
