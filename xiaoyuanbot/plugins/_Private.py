@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from json import loads
-from os import popen, system, path
+from os import popen, path
 from sys import argv
 from urllib import parse
 
@@ -114,8 +114,3 @@ def makeGrass(text: str) -> str:
 
 def text2speach(text: str):
     post('http://www.mysqlschool.cn/SpeekText/index.php?type=2&text=' + text + '&voice_name=zh-CN-XiaoxiaoNeural')
-
-
-def playmusic(file: str):
-    system('taskkill /f /im ffplay.exe')
-    system('start ' + fpath + '\\xiaoyuanbot\\plugins\\ffplay.exe ' + file)

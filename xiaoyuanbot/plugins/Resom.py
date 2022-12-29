@@ -54,7 +54,14 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 "content": "c-menu -- 显示聊天转发群专属菜单"
             }
         },
-
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "l-menu -- 显示XYStd的直播菜单"
+            }
+        },
         {
             "type": "node",
             "data": {
@@ -237,14 +244,6 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
                 "content": "mc -- 获得一个MC服务器的运行状态,用法:mc <服务器地址>"
-            }
-        },
-        {
-            "type": "node",
-            "data": {
-                "name": "XiaoYuanBot",
-                "uin": bot.self_id,
-                "content": "live-play -- XiaoYuan Studio的直播点歌,用法:live-play <音乐名>"
             }
         },
         {
@@ -569,6 +568,64 @@ async def _(bot: Bot, event: GroupMessageEvent):
                         "uin": bot.self_id,
                         "content": "send -- 发送一条消息,用法:send <--Private\\--Group> <消息类型(可填msg,at,tts,xml)>,<群号>,<消息>"
                     }
+                },
+                {
+                    "type": "node",
+                    "data": {
+                        "name": "XiaoYuanBot",
+                        "uin": bot.self_id,
+                        "content": "此刻人品:" + str(randint(0, 100))
+                    }
+                },
+                {
+                    "type": "node",
+                    "data": {
+                        "name": "XiaoYuanBot",
+                        "uin": bot.self_id,
+                        "content": "------------------------------"
+                    }
                 }
             ]
             await bot.call_api('send_group_forward_msg', group_id=event.group_id, messages=msg)
+
+
+lmenu = on_command('l-menu')
+
+
+@lmenu.handle()
+async def _(bot: Bot, event: GroupMessageEvent):
+    msg = [
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "--------XYStd的直播菜单---------"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "live-play -- XiaoYuan Studio的直播点歌,用法:live-play <音乐名>"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "live-playmov -- XiaoYuan Studio的直播点视频,用法:live-playmov <AV号/BV号>"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "------------------------------"
+            }
+        }
+    ]
+    await bot.call_api('send_group_forward_msg', group_id=event.group_id, messages=msg)
