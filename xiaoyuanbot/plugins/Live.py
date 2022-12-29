@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from os import path
+from os import path, remove
 from sys import argv
 
-from Play_mp3 import play
 from nonebot import on_command
 from nonebot.adapters.onebot.v11 import GroupMessageEvent
+from playsound import playsound
+from requests import get
 
 from ._Private import musicgetter
 
@@ -22,4 +23,5 @@ async def _(event: GroupMessageEvent):
         f.write(file.content)
         f.close()
     await liveplay.send('正在播放:' + music[1] + ' - ' + music[0] + '\nhttps://music.163.com/song?id=' + music[2])
-    play(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3')
+    playsound(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3')
+    remove(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3')
