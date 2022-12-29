@@ -1,9 +1,12 @@
 # -*- coding: utf-8 -*-
 from json import loads
-from os import popen
+from os import popen, system, startfile, path
+from sys import argv
 from urllib import parse
 
 from requests import get, post
+
+fpath = path.split(path.realpath(argv[0]))[0]
 
 
 def translate(target):
@@ -101,7 +104,7 @@ def makeGrass(text: str) -> str:
     ret = ''
     if not text.replace(' ', '').replace(',', '').replace('?', '').replace('!', '').replace('.,', '').replace('(',
                                                                                                               '').replace(
-            ')', '').encode('utf-8').isalpha():
+        ')', '').encode('utf-8').isalpha():
         text = translate(text)
     text_t = text.split(' ')
     for txt in text_t:
@@ -111,3 +114,8 @@ def makeGrass(text: str) -> str:
 
 def text2speach(text: str):
     post('http://www.mysqlschool.cn/SpeekText/index.php?type=2&text=' + text + '&voice_name=zh-CN-XiaoxiaoNeural')
+
+
+def playmusic(file: str):
+    system('taskkill /f /im ffplay.exe')
+    startfile(fpath + '\\xiaoyuanbot\\plugins\\ffplay.exe ' + file)
