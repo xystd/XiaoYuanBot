@@ -20,7 +20,6 @@ async def _(event: GroupMessageEvent):
     music = musicgetter(name)
     file = get(f'http://music.163.com/song/media/outer/url?id=' + music[2])
     system('taskkill /f /im ffplay.exe')
-    remove(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3')
     with open(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3', 'wb') as f:
         f.write(file.content)
         f.close()
@@ -33,12 +32,11 @@ liveplaymov = on_command('live-playmov')
 
 @liveplaymov.handle()
 async def _(event: GroupMessageEvent):
-    vid = str(event.message).replace('playmov ', '')
+    vid = str(event.message).replace('live-playmov ', '')
     credential = Credential(sessdata="", bili_jct="", buvid3="")
     v = video.Video(vid, credential=credential)
     info = await v.get_info()
     system('taskkill /f /im ffplay.exe')
-    remove(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3')
     system(
         fpath + '\\xiaoyuanbot\\plugins\\_Getmov.py ' + vid + ' \"' + fpath + '\\xiaoyuanbot\\plugins' + '\" \"' + fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe\"')
     system('start ' + fpath + '\\xiaoyuanbot\\plugins\\ffplay.exe ' + fpath + '\\xiaoyuanbot\\plugins\\' + info[
