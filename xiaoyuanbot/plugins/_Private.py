@@ -4,7 +4,7 @@ from os import popen, path
 from sys import argv
 from urllib import parse
 
-from requests import get, post
+from requests import get
 
 fpath = path.split(path.realpath(argv[0]))[0]
 
@@ -110,7 +110,3 @@ def makeGrass(text: str) -> str:
     for txt in text_t:
         ret = ret + translate(txt)
     return ret
-
-
-def text2speach(text: str):
-    post('http://www.mysqlschool.cn/SpeekText/index.php?type=2&text=' + text + '&voice_name=zh-CN-XiaoxiaoNeural')

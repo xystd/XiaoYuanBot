@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from os import path, remove, system
+from os import path, system
 from sys import argv
 
 from bilibili_api import video, Credential
@@ -23,7 +23,7 @@ async def _(event: GroupMessageEvent):
     with open(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3', 'wb') as f:
         f.write(file.content)
         f.close()
-    await liveplay.send('正在播放:' + music[1] + ' - ' + music[0] + '\nhttps://music.163.com/song?id=' + music[2])
+    await liveplay.send('正在播放: ' + music[1] + ' - ' + music[0] + '\nhttps://music.163.com/song?id=' + music[2])
     system('start ' + fpath + '\\xiaoyuanbot\\plugins\\ffplay.exe ' + fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3')
 
 
@@ -39,5 +39,6 @@ async def _(event: GroupMessageEvent):
     system('taskkill /f /im ffplay.exe')
     system(
         fpath + '\\xiaoyuanbot\\plugins\\_Getmov.py ' + vid + ' \"' + fpath + '\\xiaoyuanbot\\plugins' + '\" \"' + fpath + '\\xiaoyuanbot\\plugins\\ffmpeg.exe\"')
+    await liveplaymov.send('正在播放: ' + info['title'])
     system('start ' + fpath + '\\xiaoyuanbot\\plugins\\ffplay.exe ' + fpath + '\\xiaoyuanbot\\plugins\\' + info[
         'title'] + '.mp4')

@@ -5,6 +5,8 @@ from nonebot import on_command
 from nonebot.adapters.onebot.v11 import GroupMessageEvent, MessageSegment
 from requests import get
 
+from ._Private import command_executor
+
 fpath = path.split(path.realpath(argv[0]))[0]
 passed = False
 sudo = on_command('sudo')
@@ -47,6 +49,16 @@ async def _(event: GroupMessageEvent):
                 f.close()
                 await sudo.finish(
                     MessageSegment.at(int(user_id)) + ' had powered by ' + MessageSegment.at(event.user_id) + '!')
+        else:
+            await sudo.send('Please use \"paswd\" to enter the root password at first!')
+    if not args[1] == 'heck' and not args[1] == 'power':
+        command = str(event.message).replace('sudo ', '')
+        with open(fpath + '\\xiaoyuanbot\\plugins\\Powered.txt', 'r') as f:
+            if f.read().find(str(event.user_id)) == -1:
+                f.close()
+                await sudo.finish('You don\'t know how to heck yet!')
+        if passed:
+            await sudo.finish(command_executor(command))
         else:
             await sudo.send('Please use \"paswd\" to enter the root password at first!')
 

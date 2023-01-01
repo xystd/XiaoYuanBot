@@ -20,7 +20,7 @@ covid = on_command('covid')
 @covid.handle()
 async def _():
     await covid.finish(
-        "----国内疫情统计----\n今日确诊:" + covidgetter()[0] + "\n今日治愈:" + covidgetter()[1] + "\n今日死亡:" +
+        "----国内疫情统计----\n今日确诊: " + covidgetter()[0] + "\n今日治愈: " + covidgetter()[1] + "\n今日死亡: " +
         covidgetter()[2])
 
 
@@ -29,30 +29,30 @@ fakemsg = on_command('fakemsg')
 
 @fakemsg.handle()
 async def _(bot: Bot, event: GroupMessageEvent):
-    args = str(event.message).replace('fakemsg ', '').split(",")
-    uin = args[0]
-    name = args[1]
-    content = args[2]
+    args = str(event.message).replace('fakemsg ', '').replace('--NoInfo ', '').split(";")
     js = loads(event.json())
-    msg = [
-        {
+    msg = []
+    for argi in args:
+        arg = argi.split(",")
+        msg.append({
             "type": "node",
             "data": {
-                "name": name,
-                "uin": uin,
-                "content": content
+                "name": arg[1],
+                "uin": arg[0],
+                "content": arg[2]
             }
-        },
-        {
+        })
+    if not str(event.message).find('--NoInfo '):
+        msg.append({
             "type": "node",
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "此消息由@" + str(js["sender"]["nickname"]) + " 伪造的,意味着这条消息并不存在,请不要当真"
+                "content": "此消息由@" + str(js["sender"]["nickname"]) + " 伪造的, 意味着这条消息并不存在, 请不要当真"
             }
-        }
-    ]
+        })
     await bot.call_api('send_group_forward_msg', group_id=event.group_id, messages=msg)
+    await fakemsg.finish()
 
 
 ping = on_command('ping')
@@ -79,9 +79,10 @@ async def _(event: GroupMessageEvent):
     with open(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3', 'wb') as f:
         f.write(file.content)
         f.close()
-    await play.send('正在播放:' + music[1] + ' - ' + music[0] + '\nhttps://music.163.com/song?id=' + music[2])
+    await play.send('正在播放: ' + music[1] + ' - ' + music[0] + '\nhttps://music.163.com/song?id=' + music[2])
     await play.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3'))
     remove(fpath + '\\xiaoyuanbot\\plugins\\PlayMusic.mp3')
+    await play.finish()
 
 
 makeqr = on_command('makeqr')
@@ -96,6 +97,7 @@ async def _(event: GroupMessageEvent):
         f.close()
     await makeqr.send(MessageSegment.image(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\QRCode.png'))
     remove(fpath + '\\xiaoyuanbot\\plugins\\QRCode.png')
+    await makeqr.finish()
 
 
 rpic = on_command('r-pic')
@@ -116,9 +118,10 @@ async def _():
         f.close()
     system(
         fpath + '\\xiaoyuanbot\\plugins\\_Rickpic.py ' + fpath + '\\xiaoyuanbot\\plugins\\Rick.png ' + fpath + '\\xiaoyuanbot\\plugins\\RandomR18Picture.png ' + fpath + '\\xiaoyuanbot\\plugins\\Picture.png')
-    await rpic.finish(MessageSegment.image(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\Picture.png'))
+    await rr18pic.send(MessageSegment.image(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\Picture.png'))
     remove(fpath + '\\xiaoyuanbot\\plugins\\RandomR18Picture.png')
     remove(fpath + '\\xiaoyuanbot\\plugins\\Picture.png')
+    await rr18pic.finish()
 
 
 rmcpic = on_command('r-mcpic')
@@ -144,7 +147,8 @@ speak = on_command('speak')
 async def _(event: GroupMessageEvent):
     text = str(event.message).replace('speak ', '')
     system(
-        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav -t \"' + text + '\"')
+        fpath + '\\xiaoyuanbot\\plugins\\Balcon\\balcon.exe -w ' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav -t '
+                                                                           '\"' + text + '\"')
     await speak.send(MessageSegment.record(f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav'))
     remove(fpath + '\\xiaoyuanbot\\plugins\\SpeakAudio.wav')
 
@@ -155,7 +159,7 @@ timenow = on_command('timenow')
 @timenow.handle()
 async def _():
     time_now = strftime("%F %A %H:%M:%S")
-    await timenow.finish("现在时间是:" + time_now)
+    await timenow.finish("现在时间是: " + time_now)
 
 
 fanyi = on_command('fanyi')
@@ -164,7 +168,7 @@ fanyi = on_command('fanyi')
 @fanyi.handle()
 async def _(event: GroupMessageEvent):
     tsrc = str(event.message).replace('fanyi ', '')
-    await fanyi.finish('翻译源:' + tsrc + '\n翻译结果:' + translate(tsrc))
+    await fanyi.finish('翻译源: ' + tsrc + '\n翻译结果: ' + translate(tsrc))
 
 
 weather = on_command('weather')
@@ -174,8 +178,9 @@ weather = on_command('weather')
 async def _(event: GroupMessageEvent):
     city = str(event.message).replace('weather ', '')
     await weather.finish(
-        "----天气查询----\n地区:" + city + "\n最高指数:" + weathergetter(city)[0] + "\n最低指数:" + weathergetter(city)[
-            1] + "\n天气:" + weathergetter(city)[2])
+        "----天气查询----\n地区: " + city + "\n最高指数: " + weathergetter(city)[0] + "\n最低指数: " +
+        weathergetter(city)[
+            1] + "\n天气: " + weathergetter(city)[2])
 
 
 yxh = on_command('yxh')
@@ -240,7 +245,7 @@ mkgrass = on_command('mkgrass')
 async def _(event: GroupMessageEvent):
     text = str(event.message).replace('mkgrass ', '')
     text_new = makeGrass(text)
-    await mkgrass.finish('生草翻译结果:' + text_new)
+    await mkgrass.finish('生草翻译结果: ' + text_new)
 
 
 bili = on_command('bili')
@@ -257,12 +262,13 @@ async def _(event: GroupMessageEvent):
         f.write(file.content)
         f.close()
     await bili.send(
-        str(vid) + "的视频信息:\n" + "标题:" + info['title'] + "\nBv号:" + info['bvid'] + "\nAv号:" + "AV" + str(
-            info['aid']) + "\n简介:" +
-        info['desc'] + "\n发布者:" + info['owner']['name'] + "(" + str(info['owner']['mid']) + ")" + "\n播放量:" + str(
-            info['stat']['view']) + "\n点赞:" +
-        str(info['stat']['like']) + "\n投币:" + str(info['stat']['coin']) + "\n收藏:" + str(
-            info['stat']['favorite']) + "\n封面:" + MessageSegment.image(
+        str(vid) + "的视频信息:\n" + "标题: " + info['title'] + "\nBv号: " + info['bvid'] + "\nAv号: " + "AV" + str(
+            info['aid']) + "\n简介: " +
+        info['desc'] + "\n发布者: " + info['owner']['name'] + "(" + str(
+            info['owner']['mid']) + ")" + "\n播放量: " + str(
+            info['stat']['view']) + "\n点赞: " +
+        str(info['stat']['like']) + "\n投币: " + str(info['stat']['coin']) + "\n收藏: " + str(
+            info['stat']['favorite']) + "\n封面: " + MessageSegment.image(
             f'file:///' + fpath + '\\xiaoyuanbot\\plugins\\CoverPicture.jpg'))
     remove(fpath + '\\xiaoyuanbot\\plugins\\CoverPicture.jpg')
 
@@ -291,7 +297,7 @@ async def _(event: GroupMessageEvent):
     with open(fpath + '\\xiaoyuanbot\\plugins\\Syncgroup.txt', 'w') as f:
         f.write(str(event.group_id))
         f.close()
-        await sync.finish('此群已成为默认聊天转发群,请重新启动Bot生效!')
+        await sync.finish('此群已成为默认聊天转发群, 请重新启动Bot生效!')
 
 
 send = on_command('send')
@@ -303,7 +309,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
         if f.read() == str(event.group_id):
             f.close()
             if str(event.message).find('send --Private') == -1 and str(event.message).find('send --Group') == -1:
-                await send.finish('无效参数,需要参数--Private或--Group')
+                await send.finish('无效参数, 需要参数--Private或--Group')
             if not str(event.message).find('send --Private ') == -1:
                 args = str(event.message).replace('send --Private ', '').split(",")
                 if args[0] == 'msg':
@@ -347,10 +353,11 @@ async def _(event: GroupMessageEvent):
     else:
         req = get('https://api.wer.plus/api/mcse?host=' + address)
     if req.json().get("msg") == 'success':
-        await mc.finish('服务器' + address + '当前的状态:在线\n版本号:' + req.json().get("data").get(
-            "ver_name") + '\n服务器名称:' + req.json().get("data").get("serv_name") + '\n在线人数:' + req.json().get(
+        await mc.finish('服务器' + address + '当前的状态: 在线\n版本号: ' + req.json().get("data").get(
+            "ver_name") + '\n服务器名称: ' + req.json().get("data").get("serv_name") + '\n在线人数: ' + req.json().get(
             "data").get(
-            "onl_l") + '\n最多在线人数:' + req.json().get("data").get("max_l") + '\n延迟:' + req.json().get("data").get(
+            "onl_l") + '\n最多在线人数: ' + req.json().get("data").get("max_l") + '\n延迟: ' + req.json().get(
+            "data").get(
             "serv_ping"))
     else:
-        await mc.finish('服务器' + address + '当前的状态:离线')
+        await mc.finish('服务器' + address + '当前的状态: 离线')

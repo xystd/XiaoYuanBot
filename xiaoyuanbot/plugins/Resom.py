@@ -27,6 +27,14 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
+                "content": "注意: 所有命令均不应含有指示符\"<>\"或\"[]\", 在帮助信息中, 这些分别表示必填和选填"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
                 "content": "menu -- 显示这条信息"
             }
         },
@@ -44,14 +52,6 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
                 "content": "g-menu -- 显示游戏菜单"
-            }
-        },
-        {
-            "type": "node",
-            "data": {
-                "name": "XiaoYuanBot",
-                "uin": bot.self_id,
-                "content": "c-menu -- 显示聊天转发群专属菜单"
             }
         },
         {
@@ -83,7 +83,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "fakemsg -- 制造假消息,用法:fakemsg <QQ号>,<昵称>,<消息>"
+                "content": "fakemsg -- 制造假消息,用法: fakemsg <QQ号>,<昵称>,<消息>;<QQ号>,<昵称>,<消息>...(可多条消息,重复此格式即可)"
             }
         },
         {
@@ -91,7 +91,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "ping -- 测试一个网络地址是否畅通,用法:ping <网络地址>"
+                "content": "ping -- 测试一个网络地址是否畅通, 用法: ping <网络地址>"
             }
         },
         {
@@ -99,7 +99,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "play -- 以发送语音的形式播放音乐,用法:play <音乐名>"
+                "content": "play -- 以发送语音的形式播放音乐, 用法: play <音乐名>"
             }
         },
         {
@@ -107,7 +107,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "makeqr -- 制作一个二维码,用法:makeqr <想要写进二维码的文本/网址>"
+                "content": "makeqr -- 制作一个二维码, 用法: makeqr <想要写进二维码的文本/网址>"
             }
         },
         {
@@ -123,7 +123,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "r-r18pic -- 随机R18图片,请自行缩小图片到1500x1057或1500x844(临近算法)"
+                "content": "r-r18pic -- 随机R18图片, 请自行缩小图片到1500x1057或1500x844(临近算法)"
             }
         },
         {
@@ -147,7 +147,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "speak -- 以发送语音的形式说一句话,用法:speak <文本>"
+                "content": "speak -- 以发送语音的形式说一句话, 用法: speak <文本>"
             }
         },
         {
@@ -163,7 +163,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "fanyi -- 翻译一段文本,用法:fanyi <文本>"
+                "content": "fanyi -- 翻译一段文本, 用法: fanyi <文本>"
             }
         },
         {
@@ -171,7 +171,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "weather -- 查询今天的天气,用法:weather <地区>"
+                "content": "weather -- 查询今天的天气, 用法: weather <地区>"
             }
         },
         {
@@ -179,7 +179,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "yxh -- 用营销号的语气创建一段文本,用法:yxh <名字>,<事件>,<另一种说法>"
+                "content": "yxh -- 用营销号的语气创建一段文本, 用法: yxh <名字>,<事件>,<另一种说法>"
             }
         },
         {
@@ -187,7 +187,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "film -- 用电影解说的语气创建一段文本,用法:film <男主>,<女主>,<配角>,<事件>"
+                "content": "film -- 用电影解说的语气创建一段文本, 用法: film <男主>,<女主>,<配角>,<事件>"
             }
         },
         {
@@ -211,7 +211,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "mkgrass -- 使用生草翻译翻译一段文本,用法:mkgrass <文本>"
+                "content": "mkgrass -- 使用生草翻译翻译一段文本, 用法: mkgrass <文本>"
             }
         },
         {
@@ -219,7 +219,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "bili -- 查询B站视频信息,用法:bili <AV号/BV号>"
+                "content": "bili -- 查询B站视频信息, 用法: bili <AV号/BV号>"
             }
         },
         {
@@ -227,7 +227,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "playmov -- 播放B站视频,用法:playmov <AV号/BV号>"
+                "content": "playmov -- 播放B站视频, 用法: playmov <AV号/BV号>"
             }
         },
         {
@@ -243,7 +243,23 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "mc -- 获得一个MC服务器的运行状态,用法:mc <服务器地址>"
+                "content": "mc -- 获得一个MC服务器的运行状态, 用法: mc <服务器地址>"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "send -- 发送一条消息(聊天转发群专属), 用法: send <--Private\\--Group> <消息类型(可填msg,at,tts,xml)>,<群号>,<消息>"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "genshin -- 获得一个原神玩家的信息, 用法: genshin <玩家UID>"
             }
         },
         {
@@ -285,7 +301,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "kick -- 踢出一个人,用法:kick <@某人>"
+                "content": "注意: 所有命令均不应含有指示符\"<>\"或\"[]\", 在帮助信息中, 这些分别表示必填和选填"
             }
         },
         {
@@ -293,7 +309,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "ban -- 禁言一个人,用法:ban <@某人\\全体成员>"
+                "content": "kick -- 踢出一个人, 用法: kick <@某人>"
             }
         },
         {
@@ -301,7 +317,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "unban -- 解除禁言一个人,用法:unban <@某人\\全体成员>"
+                "content": "ban -- 禁言一个人, 用法: ban <@某人\\全体成员>"
             }
         },
         {
@@ -309,7 +325,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "admin -- 将一个人设置为管理员,用法:admin <@某人>"
+                "content": "unban -- 解除禁言一个人, 用法: unban <@某人\\全体成员>"
             }
         },
         {
@@ -317,7 +333,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "unadmin -- 取消一个人的管理员身份,用法:unadmin <@某人>"
+                "content": "admin -- 将一个人设置为管理员, 用法: admin <@某人>"
             }
         },
         {
@@ -325,7 +341,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "title -- 给一个人设置特殊头衔,用法:title <@某人> <头衔>"
+                "content": "unadmin -- 取消一个人的管理员身份, 用法: unadmin <@某人>"
             }
         },
         {
@@ -333,7 +349,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "msgban -- 封禁一条消息,用法:msgban <消息>"
+                "content": "title -- 给一个人设置特殊头衔, 用法: title <@某人> <头衔>"
             }
         },
         {
@@ -341,7 +357,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "msgunban -- 解除封禁一条消息,用法:msgunban <消息>"
+                "content": "msgban -- 封禁一条消息, 用法: msgban <消息>"
             }
         },
         {
@@ -349,7 +365,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "block -- 封锁一个用户,用法:block <@用户名\\QQ号>"
+                "content": "msgunban -- 解除封禁一条消息, 用法: msgunban <消息>"
             }
         },
         {
@@ -357,7 +373,15 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "unblock -- 解除封锁一个用户,用法:unblock <@用户名\\QQ号>"
+                "content": "block -- 封锁一个用户, 用法: block <@用户名\\QQ号>"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "unblock -- 解除封锁一个用户, 用法: unblock <@用户名\\QQ号>"
             }
         },
         {
@@ -399,7 +423,15 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "duck -- 抓鸭子游戏,玩法:duck <鸭子只数>"
+                "content": "注意: 所有命令均不应含有指示符\"<>\"或\"[]\", 在帮助信息中, 这些分别表示必填和选填"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "duck -- 抓鸭子游戏, 玩法: duck <鸭子只数>"
             }
         },
         {
@@ -415,7 +447,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "mine -- 模拟挖矿(灵感来源:Minecraft,需要使用\"g-reg\"注册)"
+                "content": "mine -- 模拟挖矿(灵感来源:Minecraft, 需要使用\"g-reg\"注册)"
             }
         },
         {
@@ -423,7 +455,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "cut -- 模拟撸树(灵感来源:Minecraft,需要使用\"g-reg\"注册)"
+                "content": "cut -- 模拟撸树(灵感来源:Minecraft, 需要使用\"g-reg\"注册)"
             }
         },
         {
@@ -455,7 +487,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "pvp -- 模拟PvP(灵感来源:Hypixel,需要使用\"g-reg\"注册),用法:pvp <你要赌出去的钻石数>"
+                "content": "pvp -- 模拟PvP(灵感来源:Hypixel, 需要使用\"g-reg\"注册), 用法:pvp <你要赌出去的钻石数>"
             }
         },
         {
@@ -463,7 +495,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "edit -- 修改钻石数(需要超级用户权限),用法:edit <QQ号>,<要设置的钻石数>"
+                "content": "edit -- 修改钻石数(需要超级用户权限), 用法:edit <QQ号>,<要设置的钻石数>"
             }
         },
         {
@@ -544,51 +576,6 @@ async def _(bot: Bot, event: GroupMessageEvent):
     await bot.call_api('send_group_forward_msg', group_id=event.group_id, messages=msg)
 
 
-cmenu = on_command('c-menu')
-
-
-@cmenu.handle()
-async def _(bot: Bot, event: GroupMessageEvent):
-    with open(fpath + '\\xiaoyuanbot\\plugins\\Syncgroup.txt', 'r') as f:
-        if f.read() == str(event.group_id):
-            f.close()
-            msg = [
-                {
-                    "type": "node",
-                    "data": {
-                        "name": "XiaoYuanBot",
-                        "uin": bot.self_id,
-                        "content": "--------聊天转发群专属菜单---------"
-                    }
-                },
-                {
-                    "type": "node",
-                    "data": {
-                        "name": "XiaoYuanBot",
-                        "uin": bot.self_id,
-                        "content": "send -- 发送一条消息,用法:send <--Private\\--Group> <消息类型(可填msg,at,tts,xml)>,<群号>,<消息>"
-                    }
-                },
-                {
-                    "type": "node",
-                    "data": {
-                        "name": "XiaoYuanBot",
-                        "uin": bot.self_id,
-                        "content": "此刻人品:" + str(randint(0, 100))
-                    }
-                },
-                {
-                    "type": "node",
-                    "data": {
-                        "name": "XiaoYuanBot",
-                        "uin": bot.self_id,
-                        "content": "------------------------------"
-                    }
-                }
-            ]
-            await bot.call_api('send_group_forward_msg', group_id=event.group_id, messages=msg)
-
-
 lmenu = on_command('l-menu')
 
 
@@ -608,7 +595,7 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "live-play -- XiaoYuan Studio的直播点歌,用法:live-play <音乐名>"
+                "content": "注意: 所有命令均不应含有指示符\"<>\"或\"[]\", 在帮助信息中, 这些分别表示必填和选填"
             }
         },
         {
@@ -616,7 +603,15 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
-                "content": "live-playmov -- XiaoYuan Studio的直播点视频,用法:live-playmov <AV号/BV号>"
+                "content": "live-play -- XiaoYuan Studio的直播点歌,用法: live-play <音乐名>"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "live-playmov -- XiaoYuan Studio的直播点视频,用法: live-playmov <AV号/BV号>"
             }
         },
         {
