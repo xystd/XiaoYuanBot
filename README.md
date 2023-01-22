@@ -5,11 +5,11 @@
 > 用法：\
 > 0.找一个合适的目录(不用说吧)\
 > 1.右键目录打开Git Bush(需要下载)\
-> 2.运行以下命令:\
+> 2.运行以下命令:
 > ```
 > git clone https://ghproxy.com/https://github.com/xystd/XiaoYuanBot.git
 > ```
-> 如果在非大陆地区请用以下命令:\
+> 如果在非大陆地区请用以下命令:
 > ```
 > git clone https://github.com/xystd/XiaoYuanBot.git
 > ```
