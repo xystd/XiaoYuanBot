@@ -1,23 +1,23 @@
 <div align="center">
-<h1>XiaoYuanBot：XiaoYuanBot produced by Xiaoyuan Studio</h1>
+<h1>XiaoYuanBot：由小源工作室出品的小源QQ机器人</h1>
 
-Documentation: English version | [中文版](https://github.com/xystd/XiaoYuanBot/blob/master/README.md)
+Documentation: [English version](https://github.com/xystd/XiaoYuanBot/blob/master/README_EN.md) | 中文版
 </div>
 
-### Download the method:
-1.Open Terminal (Command Prompt or PowerShell under Windows)\
-2.Run the following command:
+### 下载方法:
+1.打开终端 (在Windows系统下为命令提示符或PowerShell)\
+2.运行以下命令:
 ```
 git clone https://ghproxy.com/https://github.com/xystd/XiaoYuanBot.git
-cd XiaoYuanBot && pip install -r requirements.txt #Python3+ and pip need to be installed
+cd XiaoYuanBot && pip install -r requirements.txt #需要安装Python3+和Pip
 ```
-If not Chinese mainland use the following command:
+如果在非大陆地区请用以下命令:
 ```
 git clone https://github.com/xystd/XiaoYuanBot.git
-cd XiaoYuanBot && pip install -r requirements.txt #Python3+ and pip need to be installed
+cd XiaoYuanBot && pip install -r requirements.txt #需要安装Python3+和Pip
 ```
-### Startup mode:
+### 启动方式:
 ```
-start Bot.bat #Windows operating system
-python bot.py #Linux operating system
+start Bot.bat #Windows操作系统
+python bot.py #Linux操作系统
 ```
