@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-from json import load, dump, dumps, loads
+from json import dump, dumps, loads
 from os import path, mkdir
 from random import seed, choice, randint
 from sys import argv
 
 from nonebot import on_command
-from nonebot.adapters.onebot.v11 import GroupMessageEvent, Bot
+from nonebot.adapters.onebot.v11 import GroupMessageEvent
 from nonebot.permission import *
 
 seed()

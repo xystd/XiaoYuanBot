@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from json import loads
 
 from nonebot import on_command

@@ -211,6 +211,14 @@ async def _(bot: Bot, event: GroupMessageEvent):
             "data": {
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
+                "content": "splashes -- 发送随机MC闪烁标语"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
                 "content": "mkgrass -- 使用生草翻译翻译一段文本, 用法: mkgrass <文本>"
             }
         },
@@ -530,6 +538,15 @@ async def _(bot: Bot, event: GroupMessageEvent):
                 "name": "XiaoYuanBot",
                 "uin": bot.self_id,
                 "content": "---" + MessageSegment.face(16) + "Beluga Heck Tools Menu" + MessageSegment.face(16) + "---"
+            }
+        },
+        {
+            "type": "node",
+            "data": {
+                "name": "XiaoYuanBot",
+                "uin": bot.self_id,
+                "content": "You Must Use \"sudo\" Before Each Command, If There Is No Known Command After \"sudo\", "
+                           "It Will Run The System Command. "
             }
         },
         {

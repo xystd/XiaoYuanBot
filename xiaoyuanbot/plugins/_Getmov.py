@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from asyncio import get_event_loop
 from os import system, remove
 from sys import argv

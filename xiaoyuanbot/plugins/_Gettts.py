@@ -1,16 +1,18 @@
 # 来源 https://github.com/OS984/DiscordBotBackend/blob/3b06b8be39e4dbc07722b0afefeee4c18c136102/NeuralTTS.py
 # A completely innocent attempt to borrow proprietary Microsoft technology for a much better TTS experience
-import requests
-import websockets
-import asyncio
-from datetime import datetime
-import time
-import re
-import uuid
+# -*- coding: utf-8 -*-
 import argparse
+import asyncio
+import re
+import time
+import uuid
+from datetime import datetime
 
+import websockets
 
 '''命令行参数解析'''
+
+
 def parseArgs():
     parser = argparse.ArgumentParser(description='text2speech')
     parser.add_argument('--input', dest='input', help='SSML(语音合成标记语言)的路径', type=str, required=True)
@@ -18,10 +20,12 @@ def parseArgs():
     args = parser.parse_args()
     return args
 
+
 # Fix the time to match Americanisms
 def hr_cr(hr):
     corrected = (hr - 1) % 24
     return str(corrected)
+
 
 # Add zeros in the right places i.e 22:1:5 -> 22:01:05
 def fr(input_string):
@@ -32,10 +36,14 @@ def fr(input_string):
         i -= 1
     return corr + input_string
 
+
 # Generate X-Timestamp all correctly formatted
 def getXTime():
     now = datetime.now()
-    return fr(str(now.year)) + '-' + fr(str(now.month)) + '-' + fr(str(now.day)) + 'T' + fr(hr_cr(int(now.hour))) + ':' + fr(str(now.minute)) + ':' + fr(str(now.second)) + '.' + str(now.microsecond)[:3] + 'Z'
+    return fr(str(now.year)) + '-' + fr(str(now.month)) + '-' + fr(str(now.day)) + 'T' + fr(
+        hr_cr(int(now.hour))) + ':' + fr(str(now.minute)) + ':' + fr(str(now.second)) + '.' + str(now.microsecond)[
+                                                                                              :3] + 'Z'
+
 
 # Async function for actually communicating with the websocket
 async def transferMsTTSData(SSML_text, outputPath):
@@ -54,27 +62,27 @@ async def transferMsTTSData(SSML_text, outputPath):
     #     Auth_Token + "&X-ConnectionId=" + req_id
     # 目前该接口没有认证可能很快失效
     endpoint2 = f"wss://eastus.api.speech.microsoft.com/cognitiveservices/websocket/v1?TrafficType=AzureDemo&Authorization=bearer%20undefined&X-ConnectionId={req_id}"
-    async with websockets.connect(endpoint2,extra_headers={'Origin':'https://azure.microsoft.com'}) as websocket:
+    async with websockets.connect(endpoint2, extra_headers={'Origin': 'https://azure.microsoft.com'}) as websocket:
         payload_1 = '{"context":{"system":{"name":"SpeechSDK","version":"1.12.1-rc.1","build":"JavaScript","lang":"JavaScript","os":{"platform":"Browser/Linux x86_64","name":"Mozilla/5.0 (X11; Linux x86_64; rv:78.0) Gecko/20100101 Firefox/78.0","version":"5.0 (X11)"}}}}'
         message_1 = 'Path : speech.config\r\nX-RequestId: ' + req_id + '\r\nX-Timestamp: ' + \
-            getXTime() + '\r\nContent-Type: application/json\r\n\r\n' + payload_1
+                    getXTime() + '\r\nContent-Type: application/json\r\n\r\n' + payload_1
         await websocket.send(message_1)
 
         payload_2 = '{"synthesis":{"audio":{"metadataOptions":{"sentenceBoundaryEnabled":false,"wordBoundaryEnabled":false},"outputFormat":"audio-16khz-32kbitrate-mono-mp3"}}}'
         message_2 = 'Path : synthesis.context\r\nX-RequestId: ' + req_id + '\r\nX-Timestamp: ' + \
-            getXTime() + '\r\nContent-Type: application/json\r\n\r\n' + payload_2
+                    getXTime() + '\r\nContent-Type: application/json\r\n\r\n' + payload_2
         await websocket.send(message_2)
 
         # payload_3 = '<speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xmlns:emo="http://www.w3.org/2009/10/emotionml" version="1.0" xml:lang="en-US"><voice name="' + voice + '"><mstts:express-as style="General"><prosody rate="'+spd+'%" pitch="'+ptc+'%">'+ msg_content +'</prosody></mstts:express-as></voice></speak>'
         payload_3 = SSML_text
         message_3 = 'Path: ssml\r\nX-RequestId: ' + req_id + '\r\nX-Timestamp: ' + \
-            getXTime() + '\r\nContent-Type: application/ssml+xml\r\n\r\n' + payload_3
+                    getXTime() + '\r\nContent-Type: application/ssml+xml\r\n\r\n' + payload_3
         await websocket.send(message_3)
 
         # Checks for close connection message
         end_resp_pat = re.compile('Path:turn.end')
         audio_stream = b''
-        while(True):
+        while (True):
             response = await websocket.recv()
             print('receiving...')
             # Make sure the message isn't telling us to stop
@@ -97,14 +105,16 @@ async def transferMsTTSData(SSML_text, outputPath):
 async def mainSeq(SSML_text, outputPath):
     await transferMsTTSData(SSML_text, outputPath)
 
+
 def get_SSML(path):
-    with open(path,'r',encoding='utf-8') as f:
+    with open(path, 'r', encoding='utf-8') as f:
         return f.read()
+
 
 if __name__ == "__main__":
     args = parseArgs()
     SSML_text = get_SSML(args.input)
-    output_path = args.output if args.output else 'output_'+ str(int(time.time()*1000))
+    output_path = args.output if args.output else 'output_' + str(int(time.time() * 1000))
     asyncio.get_event_loop().run_until_complete(mainSeq(SSML_text, output_path))
     print('completed')
     # python tts.py --input SSML.xml
